@@ -25,7 +25,7 @@ export const authSlice = createSlice({
             state.isLoggedIn = action.payload
         },
         logOut: (state) => {
-            state.userInfo = []
+            // state.userInfo = []
             state.isLoggedIn = false
         },
         addTodo: (state, action) => {
@@ -33,7 +33,7 @@ export const authSlice = createSlice({
             state.todo.push({ id, taskName, taskDetails, startDate, endDate, isCompleted, })
         },
         deleteTodo: (state, action) => {
-            state.todo = state.todo.filter((name, index) => name.taskName !== action.payload
+            state.todo = state.todo.filter((name, index) => index != action.payload
 
             )
         }

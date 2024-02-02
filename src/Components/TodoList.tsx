@@ -2,8 +2,6 @@ import { View, Text, Button, TouchableOpacity } from 'react-native'
 import React from 'react'
 import tw from "twrnc"
 import moment from 'moment'
-import { useDispatch } from 'react-redux'
-import { deleteTodo } from '../store/authReducer'
 interface ITodoTask {
     id: number,
     taskName: string,
@@ -24,7 +22,7 @@ const TodoList = ({ id, taskName, taskDetails, startDate, endDate, handleDelete 
                 <Text style={tw`text-lg  text-black `}>{taskName}</Text>
                 <Text style={tw`text-sm `}>{moment(startDate).format("MMMM Do YYYY")}</Text>
             </View>
-            <TouchableOpacity style={tw`bg-[#5F33E1] p-2 rounded-lg`} onPress={() => handleDelete(taskName)} >
+            <TouchableOpacity style={tw`bg-[#5F33E1] p-2 rounded-lg`} onPress={() => handleDelete(id)} >
                 <Text style={tw`text-white font-bold`}>Delete</Text>
             </TouchableOpacity>
         </View>
