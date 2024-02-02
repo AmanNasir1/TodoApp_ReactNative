@@ -24,6 +24,8 @@ const LoginScreen = ({ navigation }: Props) => {
         if (user) {
           Toast.show({ type: "success", text1: "Login Successfull!", })
           dispatch(loginSuccess(true))
+          setEmail("")
+          setPassword("")
         } else {
           Toast.show({ type: "error", text1: "User not Found", })
         }

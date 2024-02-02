@@ -1,8 +1,8 @@
 import { ActivityIndicator, ScrollView, Text, TextInput, TouchableOpacity, View } from 'react-native'
 import React, { useState } from 'react'
 import DateTimePicker from 'react-native-modal-datetime-picker'
-import { useDispatch } from 'react-redux'
-import { addTodo } from "../store/authReducer"
+import { useDispatch, useSelector } from 'react-redux'
+import { addTodo, saveUserInfo } from "../store/authReducer"
 import tw from "twrnc"
 import moment from 'moment'
 import CalendarIcon from '../icon/CalendarIcon'
@@ -13,6 +13,7 @@ import Toast from 'react-native-toast-message';
 const AddTodo = () => {
   const [loading, setLoading] = useState(false)
   const dispatch = useDispatch()
+  const userId = useSelector(saveUserInfo)
   const [startDate, setstartDate] = useState<Date | null>()
   const [endDate, setEndDate] = useState<Date | null>()
   const [taskName, setTaskName] = useState("")
@@ -43,10 +44,12 @@ const AddTodo = () => {
   }
 
   const addTask = () => {
+
+
     setLoading(true)
     try {
       if (taskName !== "" || taskDetails !== "") {
-        dispatch(addTodo({ taskName, taskDetails, startDate, endDate, isCompleted: false }))
+        dispatch(addTodo({ taskName, taskDetails, startDate, endDate, isCompleted: false, id: userId[0].uid }))
         setTaskName('')
         setTaskDetails('')
         setstartDate(null)

@@ -1,5 +1,5 @@
 import { View, Text, TouchableOpacity, FlatList, ActivityIndicator, Modal } from 'react-native'
-import React, {  useState } from 'react'
+import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { deleteTodo, logOut, saveUserInfo, todoTask } from '../store/authReducer'
 import tw from "twrnc"
@@ -19,8 +19,8 @@ const HomeScreen = () => {
   const toggleModal = () => {
     setIsModalVisible(!isModalVisible);
   };
-  const handleDelete = (taskName: string) => {
-    dispatch(deleteTodo(taskName))
+  const handleDelete = (id: any) => {
+    dispatch(deleteTodo(id))
   }
   const handleLogout = () => {
     auth().signOut().then(() => {
@@ -69,7 +69,7 @@ const HomeScreen = () => {
       <View style={tw`mt-10`}>
         <Text style={tw`text-black text-2xl font-bold`}>In Progress</Text>
 
-        <FlatList data={todaysTodo} renderItem={({ item }) => <TodoList {...item} handleDelete={handleDelete} />} />
+        <FlatList data={todaysTodo} renderItem={({ item }) => <TodoList id={item.index} taskName={item.taskName} taskDetails={item.taskDetails} startDate={item.startDate} endDate={item.endDate} handleDelete={handleDelete} />} />
 
       </View>
       <TodoModal isModalVisible={isModalVisible} toggleModal={toggleModal} taskName={todaysTodo[0]?.taskName} taskDetails={todaysTodo[0]?.taskDetails} startDate={todaysTodo[0]?.startDate} endDate={todaysTodo[0]?.endDate} />

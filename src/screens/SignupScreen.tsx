@@ -29,6 +29,9 @@ const SignupScreen = ({ navigation }: Props) => {
 
           dispatch(saveUserData([user.user, name]))
           Toast.show({ type: "success", text1: "Signup Successfull", })
+          setName("")
+          setEmail("")
+          setPassword("")
 
         }
       } else {
